@@ -1,3 +1,20 @@
+/*
+贪心法
+
+遍历数组，记录该元素最大可达的位置，会有以下几个情况。
+i + nums[i] >= len(nums) - 1
+可达
+
+i + nums[i] < len(nums) - 1
+
+不可达，继续往后计算
+
+i > maxLen
+
+证明i这个位置没人可以到达了，return false
+
+*/
+
 package main
 
 import "fmt"

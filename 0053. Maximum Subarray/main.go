@@ -1,3 +1,12 @@
+/*
+该算法是贪心算法。
+
+从头遍历，对于下表为i的变量来说，如果前面的sum + nums[i]大于0证明
+可以加该值，但需要和前面的sum比
+result = MAX(sum, sum + nums[i])
+如果小于0，则sum直接归零。
+*/
+
 package main
 
 import "fmt"
