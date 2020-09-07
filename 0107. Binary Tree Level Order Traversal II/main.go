@@ -1,25 +1,42 @@
 package main
 
-import (
-	"fmt"
-	"sort"
-)
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
+}
 
-func fun1(nums1[]int, nums2 []int)float32{
-	nums1 = append(nums1,nums2...)
-	sort.Ints(nums1)
-	var result float32
-	if len(nums1) % 2 == 0{
-		result = float32((nums1[len(nums1) / 2] + nums1[len(nums1) / 2 -1])) / 2
-	}else{
-		result = float32(nums1[len(nums1) / 2])
+func levelOrderBottom(root *TreeNode) [][]int {
+	var result [][]int
+	q := list.New()
+	if root == nil {
+		return result
 	}
-
+	q.PushFront(root)
+	for q.Len() > 0 {
+		currentLenth := q.Len()
+		tmpResul := make([]int, 0, 0)
+		for i := 0; i < currentLenth; i++ {
+			node := q.Back()
+			n, _ := node.Value.(*TreeNode)
+			tmpResul = append(tmpResul, n.Val)
+			if n.Left != nil {
+				q.PushFront(n.Left)
+			}
+			if n.Right != nil {
+				q.PushFront(n.Right)
+			}
+			q.Remove(node)
+		}
+		result = append(result, tmpResul)
+	}
+	l := len(result) - 1
+	for i := 0; i <= l/2; i++ {
+		result[i], result[l-i] = result[l-i], result[i]
+	}
 	return result
 }
 
-func main(){
-	num1 := []int{1, 2}
-	num2 := []int{3,4}
-	fmt.Println(fun1(num1,num2))
+func main() {
+
 }

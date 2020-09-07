@@ -1,32 +1,41 @@
-class Solution {
-	public:
-	vector<vector<int>> levelOrder(TreeNode* root) {
-	vector<vector<int>> ret;
-	if (root == NULL) { return ret; }
-	vector<int> level;
-	deque<TreeNode*> d;
-	d.push_back(root);
-	d.push_back(NULL);
-	while (!d.empty()) {
-	TreeNode* n = d.front();
-	d.pop_front();
-	if (n == NULL) {
-	if (level.size() != 0) {
-	ret.push_back(level);
-	level.clear();
+package main
+
+import (
+	"container/list"
+)
+
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
+}
+
+func levelOrder(root *TreeNode) [][]int {
+	var result [][]int
+	q := list.New()
+	if root == nil {
+		return result
 	}
-	if (d.empty()) { return ret; }
-	else { d.push_back(NULL); }
-	} else {
-	if (n->left != NULL) {
-	d.push_back(n->left);
+	q.PushFront(root)
+	for q.Len() > 0 {
+		currentLenth := q.Len()
+		tmpResul := make([]int, 0, 0)
+		for i := 0; i < currentLenth; i++ {
+			node := q.Back()
+			n, _ := node.Value.(*TreeNode)
+			tmpResul = append(tmpResul, n.Val)
+			if n.Left != nil {
+				q.PushFront(n.Left)
+			}
+			if n.Right != nil {
+				q.PushFront(n.Right)
+			}
+			q.Remove(node)
+		}
+		result = append(result, tmpResul)
 	}
-	if (n->right != NULL) {
-	d.push_back(n->right);
-	}
-	level.push_back(n->val);
-	}
-	}
-	return ret;
-	}
-};
+	return result
+}
+
+func main() {
+}
