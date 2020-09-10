@@ -6,6 +6,7 @@ import (
 	"math"
 )
 
+//题目就用个栈来实现就可以了
 func decodeString(s string) string {
 	var result []int32
 	l := list.New()
