@@ -176,6 +176,6 @@ func XY2_x_y_stub(s string) string {
 }
 
 func main() {
-	fmt.Println(x_y2_XY_stub("/v1.0/get_contry/{contry_code}"))
-	fmt.Println(XY2_x_y_stub("/v1.0/stuDent/{enAbc}/{sdsd_sdsdAbc}/{enAac}/aaBB/{aaBB}"))
+	fmt.Println(x_y2_XY_stub("/v1.0/get_contry/{contry_codA_aaa}"))
+	fmt.Println(XY2_x_y_stub("/v1.0/stuDent/{enAbc}/{sdsd_sdsdAbc}/{enAac}/aaBB/{aAaaaBB}"))
 }
